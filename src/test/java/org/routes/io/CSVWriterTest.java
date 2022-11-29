@@ -30,7 +30,7 @@ class CSVWriterTest {
         var fileWriter = new FileWriter(newFilePath);
         var csvWriter = new CSVWriter(fileWriter);
 
-        csvWriter.write(getRecord());
+        csvWriter.write(RouteHeaders.class, getRecord());
         fileWriter.close();
 
         var content = Files.readString(Path.of(newFilePath));

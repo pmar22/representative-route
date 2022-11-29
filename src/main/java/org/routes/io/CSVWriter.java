@@ -18,13 +18,13 @@ public class CSVWriter {
         this.fileWriter = fileWriter;
     }
 
-    public void write(List<String> record) throws IOException {
+    public void write(Class<RouteHeaders> headers, List<String> record) throws IOException {
         var csvFormat = CSVFormat.EXCEL
                 .builder()
                 .setRecordSeparator(RECORD_SEPARATOR)
                 .setQuote(QUOTE_CHARACTER)
                 .setQuoteMode(QuoteMode.ALL)
-                .setHeader(RouteHeaders.class)
+                .setHeader(headers)
                 .build();
         var csvPrinter = csvFormat.print(fileWriter);
 
