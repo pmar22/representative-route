@@ -18,7 +18,7 @@ class CSVWriterTest {
     private final static String OUTPUT_FILE_NAME = "unit_test_output.csv";
     private final static String EXPECTED_OUTPUT_PATH = "src/test/resources/io/expected_output_routes.csv";
     @TempDir
-    File tempDir;
+    private File tempDir;
 
     @Test
     void whenWriterIsNullThenThrowException() {
