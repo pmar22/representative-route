@@ -1,4 +1,4 @@
-package org.routes.io;
+package org.routes.io.csv;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

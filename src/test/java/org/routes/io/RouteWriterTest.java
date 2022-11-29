@@ -1,11 +1,10 @@
-package org.routes;
+package org.routes.io;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.routes.io.CSVWriter;
-import org.routes.io.RouteHeaders;
+import org.routes.io.csv.CSVWriter;
 import org.routes.model.Route;
 
 import java.io.IOException;

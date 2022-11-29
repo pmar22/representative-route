@@ -1,7 +1,6 @@
-package org.routes;
+package org.routes.io;
 
-import org.routes.io.CSVWriter;
-import org.routes.io.RouteHeaders;
+import org.routes.io.csv.CSVWriter;
 import org.routes.model.Route;
 
 import java.io.IOException;

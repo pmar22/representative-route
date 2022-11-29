@@ -2,7 +2,7 @@ package org.routes.model.factory;
 
 import org.junit.jupiter.api.Test;
 import org.routes.TestDataProvider;
-import org.routes.io.CSVReader;
+import org.routes.io.csv.CSVReader;
 import org.routes.model.Route;
 
 import java.io.FileReader;
@@ -23,11 +23,4 @@ class RouteFactoryTest {
         assertEquals(TestDataProvider.getRoute(), route);
     }
 
-    //    private List<Point> getExpectedPoints() {
-//        return List.of(Point.builder()
-//                .longitude(new BigDecimal("8.489074"))
-//                .latitude(new BigDecimal("53.615707"))
-//                .timestamp("1509423228430")
-//                .speed(new BigDecimal("14.0")).build());
-//    }
 }
