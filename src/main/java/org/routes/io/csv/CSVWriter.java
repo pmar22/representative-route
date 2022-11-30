@@ -6,8 +6,8 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.QuoteMode;
 import org.routes.io.RouteHeaders;
 
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -15,7 +15,7 @@ public class CSVWriter {
     private static final String RECORD_SEPARATOR = "\r\r";
     private static final char QUOTE_CHARACTER = '"';
     @NonNull
-    private final FileWriter fileWriter;
+    private final Writer writer;
 
     public void write(Class<RouteHeaders> headers, List<String> record) throws IOException {
         var csvFormat = CSVFormat.EXCEL
@@ -25,7 +25,7 @@ public class CSVWriter {
                 .setQuoteMode(QuoteMode.ALL)
                 .setHeader(headers)
                 .build();
-        var csvPrinter = csvFormat.print(fileWriter);
+        var csvPrinter = csvFormat.print(writer);
 
         csvPrinter.printRecord(record);
         csvPrinter.flush();

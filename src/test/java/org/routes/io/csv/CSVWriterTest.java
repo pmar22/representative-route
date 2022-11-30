@@ -9,10 +9,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.routes.TestDataProvider.getInputRecord;
 
 class CSVWriterTest {
     private final static String OUTPUT_FILE_NAME = "unit_test_output.csv";
@@ -31,7 +31,7 @@ class CSVWriterTest {
         var fileWriter = new FileWriter(newFilePath);
         var csvWriter = new CSVWriter(fileWriter);
 
-        csvWriter.write(RouteHeaders.class, getRecord());
+        csvWriter.write(RouteHeaders.class, getInputRecord());
         fileWriter.close();
 
         var content = Files.readString(Path.of(newFilePath));
@@ -39,8 +39,4 @@ class CSVWriterTest {
         assertEquals(expectedContent, content);
     }
 
-    private List<String> getRecord() {
-        return List.of("imo_9454230", "196", "197", "DEBRV", "DEHAM", "37389167", "155", "[[8.48967, 53.614338, 1507290057531, 12.5], [8.477636, 53.620094, 1507290217161, 12.5]]"
-        );
-    }
 }

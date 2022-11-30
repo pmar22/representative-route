@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.routes.RoutesReducer;
 import org.routes.finder.DurationMedianRouteFinder;
-import org.routes.io.RouteWriter;
 import org.routes.io.csv.CSVReader;
 import org.routes.io.csv.CSVWriter;
 import org.routes.model.factory.RouteFactory;
@@ -31,8 +30,8 @@ class RoutesReducerIntegrationTest {
         var csvReader = new CSVReader(fileReader);
         var outputPath = Path.of(tempDir.getAbsolutePath(), OUTPUT_FILE_NAME).toString();
         var fileWriter = new FileWriter(outputPath);
-        var routeWriter = new RouteWriter(new CSVWriter(fileWriter));
-        var routesReducer = new RoutesReducer(routeWriter, csvReader, new RouteFactory(), new DurationMedianRouteFinder());
+        var csvWriter = new CSVWriter(fileWriter);
+        var routesReducer = new RoutesReducer(csvReader, csvWriter, new RouteFactory(), new DurationMedianRouteFinder());
 
         routesReducer.reduce();
         fileWriter.close();

@@ -1,16 +1,15 @@
 package org.routes.finder;
 
+import lombok.NonNull;
 import org.routes.model.Route;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 
 public class DurationMedianRouteFinder implements RepresentativeRouteFinder {
     @Override
-    public Route find(List<Route> routes) {
-        Objects.requireNonNull(routes);
+    public Route find(@NonNull List<Route> routes) {
         if (routes.size() == 0) {
             throw new IllegalArgumentException("Cannot find representative route for empty routes argument");
         }
