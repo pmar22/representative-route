@@ -5,6 +5,7 @@ import org.routes.model.Route;
 import java.time.Duration;
 
 public class TestDataProvider {
+    public static final String INPUT_PATH = "src/test/resources/io/input_routes.csv";
 
     public static Route getRoute() {
         return Route.builder()

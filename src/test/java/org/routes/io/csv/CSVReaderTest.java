@@ -10,10 +10,9 @@ import java.io.IOException;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.routes.TestDataProvider.INPUT_PATH;
 
 class CSVReaderTest {
-
-    private final static String INPUT_PATH = "src/test/resources/io/input_routes.csv";
     private FileReader fileReader;
 
     @BeforeEach

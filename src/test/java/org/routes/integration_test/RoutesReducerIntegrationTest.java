@@ -1,7 +1,8 @@
-package org.routes;
+package org.routes.integration_test;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.routes.RoutesReducer;
 import org.routes.finder.DurationMedianRouteFinder;
 import org.routes.io.RouteWriter;
 import org.routes.io.csv.CSVReader;

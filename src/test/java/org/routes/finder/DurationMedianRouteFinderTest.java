@@ -1,5 +1,6 @@
 package org.routes.finder;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.routes.model.Route;
 
@@ -11,24 +12,25 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DurationMedianRouteFinderTest {
 
+    private DurationMedianRouteFinder finder;
+
+    @BeforeEach
+    void setUp() {
+        finder = new DurationMedianRouteFinder();
+    }
+
     @Test
     void whenNullArgumentThenThrowNullPointerException() {
-        var finder = new DurationMedianRouteFinder();
-
         assertThrows(NullPointerException.class, () -> finder.find(null));
     }
 
     @Test
     void whenZeroRoutesThenThrowException() {
-        var finder = new DurationMedianRouteFinder();
-
         assertThrows(IllegalArgumentException.class, () -> finder.find(List.of()));
     }
 
     @Test
     void whenFindForOneRouteThenReturnIt() {
-        var finder = new DurationMedianRouteFinder();
-
         Route representativeRoute = finder.find(List.of(getRouteWithDuration(100L)));
 
         assertEquals(getRouteWithDuration(100L), representativeRoute);
@@ -36,8 +38,6 @@ class DurationMedianRouteFinderTest {
 
     @Test
     void whenFindWithOddRoutesThenFindRepresentativeRoute() {
-        var finder = new DurationMedianRouteFinder();
-
         Route representativeRoute = finder.find(getOddRoutes());
 
         assertEquals(getRouteWithDuration(50L), representativeRoute);
@@ -45,8 +45,6 @@ class DurationMedianRouteFinderTest {
 
     @Test
     void whenFindWithEvenRoutesThenFindRepresentativeRoute() {
-        var finder = new DurationMedianRouteFinder();
-
         Route representativeRoute = finder.find(getEvenRoutes());
 
         assertEquals(getRouteWithDuration(25L), representativeRoute);

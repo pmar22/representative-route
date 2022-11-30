@@ -1,19 +1,17 @@
 package org.routes.io;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.routes.io.csv.CSVWriter;
 import org.routes.model.Route;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 
+@RequiredArgsConstructor
 public class RouteWriter {
+    @NonNull
     private final CSVWriter csvWriter;
-
-    public RouteWriter(CSVWriter csvWriter) {
-        Objects.requireNonNull(csvWriter);
-        this.csvWriter = csvWriter;
-    }
 
     public void save(Route route) {
         try {

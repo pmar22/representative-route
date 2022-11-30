@@ -17,8 +17,10 @@ public class RoutesReducer {
     private final RepresentativeRouteFinder representativeRouteFinder;
 
     public void reduce() throws IOException {
-        var recordsStream = csvReader.read();
-        var inputRoutes = recordsStream.map(routeFactory::create).collect(Collectors.toList());
+        var csvRecords = csvReader.read();
+        var inputRoutes = csvRecords.stream()
+                .map(routeFactory::create)
+                .collect(Collectors.toList());
         var representativeRoute = representativeRouteFinder.find(inputRoutes);
         routeWriter.save(representativeRoute);
     }

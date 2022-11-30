@@ -15,9 +15,9 @@ public class DurationMedianRouteFinder implements RepresentativeRouteFinder {
             throw new IllegalArgumentException("Cannot find representative route for empty routes argument");
         }
         var internalRoutes = new ArrayList<>(routes);
-        var comparator = Comparator.comparing(Route::getDuration);
+        var durationComparator = Comparator.comparing(Route::getDuration);
 
-        internalRoutes.sort(comparator);
+        internalRoutes.sort(durationComparator);
         return getMedian(internalRoutes);
     }
 
