@@ -29,13 +29,12 @@ class RoutesReducerIntegrationTest {
         var fileReader = new FileReader(INPUT_PATH);
         var csvReader = new CSVReader(fileReader);
         var outputPath = Path.of(tempDir.getAbsolutePath(), OUTPUT_FILE_NAME).toString();
-        var fileWriter = new FileWriter(outputPath);
-        var csvWriter = new CSVWriter(fileWriter);
-        var routesReducer = new RoutesReducer(csvReader, csvWriter, new RouteFactory(), new DurationMedianRouteFinder());
 
-        routesReducer.reduce();
-        fileWriter.close();
-        fileReader.close();
+        try (var fileWriter = new FileWriter(outputPath)) {
+            var csvWriter = new CSVWriter(fileWriter);
+            var routesReducer = new RoutesReducer(csvReader, csvWriter, new RouteFactory(), new DurationMedianRouteFinder());
+            routesReducer.reduce();
+        }
 
         var content = Files.readString(Path.of(outputPath));
         var expectedContent = Files.readString(Path.of(EXPECTED_OUTPUT_PATH));

@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
-public class RoutesReducer {
+public final class RoutesReducer {
     @NonNull
     private final CSVReader csvReader;
     @NonNull

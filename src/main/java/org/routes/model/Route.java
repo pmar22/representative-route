@@ -7,7 +7,7 @@ import java.time.Duration;
 
 @Data
 @Builder
-public class Route {
+public final class Route {
     private final String id;
     private final int fromSeq;
     private final int toSeq;
