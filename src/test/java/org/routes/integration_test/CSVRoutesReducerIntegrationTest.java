@@ -2,7 +2,7 @@ package org.routes.integration_test;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import org.routes.RoutesReducer;
+import org.routes.CSVRoutesReducer;
 import org.routes.finder.DurationMedianRouteFinder;
 import org.routes.io.csv.CSVReader;
 import org.routes.io.csv.CSVWriter;
@@ -17,7 +17,7 @@ import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class RoutesReducerIntegrationTest {
+class CSVRoutesReducerIntegrationTest {
     private final static String INPUT_PATH = "src/test/resources/integration/DEBRV_DEHAM_historical_routes.csv";
     private final static String EXPECTED_OUTPUT_PATH = "src/test/resources/integration/expected_output.csv";
     private final static String OUTPUT_FILE_NAME = "output.csv";
@@ -32,7 +32,7 @@ class RoutesReducerIntegrationTest {
 
         try (var fileWriter = new FileWriter(outputPath)) {
             var csvWriter = new CSVWriter(fileWriter);
-            var routesReducer = new RoutesReducer(csvReader, csvWriter, new RouteFactory(), new DurationMedianRouteFinder());
+            var routesReducer = new CSVRoutesReducer(csvReader, csvWriter, new RouteFactory(), new DurationMedianRouteFinder());
             routesReducer.reduce();
         }
 

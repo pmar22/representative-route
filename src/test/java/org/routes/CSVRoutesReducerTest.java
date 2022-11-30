@@ -25,7 +25,7 @@ import static org.routes.TestDataProvider.getInputRecord;
 import static org.routes.TestDataProvider.getRoute;
 
 @ExtendWith(MockitoExtension.class)
-class RoutesReducerTest {
+class CSVRoutesReducerTest {
     @Mock
     private CSVWriter csvWriter;
     @Mock
@@ -35,7 +35,7 @@ class RoutesReducerTest {
     @Mock
     private RepresentativeRouteFinder representativeRouteFinder;
     @InjectMocks
-    private RoutesReducer routesReducer;
+    private CSVRoutesReducer routesReducer;
 
     @Test
     void whenReduceThenCallRouteFactory() throws IOException {
@@ -66,22 +66,22 @@ class RoutesReducerTest {
 
     @Test
     void whenNullCSVReaderThenThrowException() {
-        assertThrows(NullPointerException.class, () -> new RoutesReducer(null, csvWriter, routeFactory, representativeRouteFinder));
+        assertThrows(NullPointerException.class, () -> new CSVRoutesReducer(null, csvWriter, routeFactory, representativeRouteFinder));
     }
 
     @Test
     void whenNullCSVWriterThenThrowException() {
-        assertThrows(NullPointerException.class, () -> new RoutesReducer(csvReader, null, routeFactory, representativeRouteFinder));
+        assertThrows(NullPointerException.class, () -> new CSVRoutesReducer(csvReader, null, routeFactory, representativeRouteFinder));
     }
 
     @Test
     void whenNullRouteFactoryThenThrowException() {
-        assertThrows(NullPointerException.class, () -> new RoutesReducer(csvReader, csvWriter, null, representativeRouteFinder));
+        assertThrows(NullPointerException.class, () -> new CSVRoutesReducer(csvReader, csvWriter, null, representativeRouteFinder));
     }
 
     @Test
     void whenNullRouteFinderThenThrowException() {
-        assertThrows(NullPointerException.class, () -> new RoutesReducer(csvReader, csvWriter, routeFactory, null));
+        assertThrows(NullPointerException.class, () -> new CSVRoutesReducer(csvReader, csvWriter, routeFactory, null));
     }
 
     @Test
