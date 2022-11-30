@@ -27,7 +27,7 @@ public final class CSVRoutesReducer implements RoutesReducer {
 
     @Override
     public void reduce() {
-        List<CSVRecord> csvRecords = readCSVRecords();
+        var csvRecords = readCSVRecords();
         var inputRoutes = csvRecords.stream()
                 .map(routeFactory::create)
                 .collect(Collectors.toList());

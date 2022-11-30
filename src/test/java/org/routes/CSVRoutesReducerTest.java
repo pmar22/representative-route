@@ -19,8 +19,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.routes.TestDataProvider.getInputRecord;
 import static org.routes.TestDataProvider.getRoute;
 
@@ -100,7 +99,15 @@ class CSVRoutesReducerTest {
     }
 
     @Test
-    void whenOutputIOExceptionThenThrowRuntime() {
+    void whenOutputIOExceptionThenThrowRuntime() throws IOException {
+        var records = getCSVRecords();
+        var firstRecord = records.get(0);
+        var route = Route.builder().id("12abc").build();
+        when(csvReader.read()).thenReturn(records);
+        when(routeFactory.create(firstRecord)).thenReturn(route);
+        when(representativeRouteFinder.find(any())).thenReturn(getRoute());
+        doThrow(IOException.class).when(csvWriter).write(any(), any());
+
         assertThrows(RuntimeException.class, () -> routesReducer.reduce());
     }
 
