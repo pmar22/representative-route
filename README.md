@@ -25,10 +25,10 @@ Limitations:
 How to run application:
 
 1. mvn clean install - it will build and generate jar artifacts
-2. java -cp target/representative-route-1.0-SNAPSHOT-jar-with-dependencies.jar runner.Main {input_routes_csv_path} {output_routes_csv_path}
+2. java -cp target/representative-route-1.0-SNAPSHOT-jar-with-dependencies.jar runner.Runner {input_routes_csv_path} {output_routes_csv_path}
 
 For example execute in the main project directory:
 
-java -cp target/representative-route-1.0-SNAPSHOT-jar-with-dependencies.jar runner.Main src/test/resources/integration/DEBRV_DEHAM_historical_routes.csv ./output.csv
+java -cp target/representative-route-1.0-SNAPSHOT-jar-with-dependencies.jar runner.Runner src/test/resources/integration/DEBRV_DEHAM_historical_routes.csv ./output.csv
 
 File output.csv should contain the representative path

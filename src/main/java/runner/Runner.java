@@ -10,9 +10,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Main {
+public class Runner {
 
     public static void main(String[] args) throws IOException {
+        System.out.println("Start finding representative route");
         if (args.length < 2) {
             throw new RuntimeException("Please provide 2 input arguments: input file path and output file path");
         }
@@ -27,6 +28,7 @@ public class Main {
             var routesReducer = new CSVRoutesReducer(csvReader, csvWriter, new RouteFactory(), new DurationMedianRouteFinder());
             routesReducer.reduce();
         }
+        System.out.println("Representative route has been saved in the output file");
     }
 
 }

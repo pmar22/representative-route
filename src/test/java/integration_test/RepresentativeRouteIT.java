@@ -1,23 +1,17 @@
-package org.routes.integration_test;
+package integration_test;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import org.routes.CSVRoutesReducer;
-import org.routes.finder.DurationMedianRouteFinder;
-import org.routes.io.csv.CSVReader;
-import org.routes.io.csv.CSVWriter;
-import org.routes.model.factory.RouteFactory;
+import runner.Runner;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class CSVRoutesReducerIntegrationTest {
+class RepresentativeRouteIT {
     private final static String INPUT_PATH = "src/test/resources/integration/DEBRV_DEHAM_historical_routes.csv";
     private final static String EXPECTED_OUTPUT_PATH = "src/test/resources/integration/expected_output.csv";
     private final static String OUTPUT_FILE_NAME = "output.csv";
@@ -25,20 +19,19 @@ class CSVRoutesReducerIntegrationTest {
     private File tempDir;
 
     @Test
-    void whenReduceThenGenerateRepresentativeRoute() throws IOException {
-        var fileReader = new FileReader(INPUT_PATH);
-        var csvReader = new CSVReader(fileReader);
+    void whenMainThenGenerateRepresentativeRoute() throws Exception {
         var outputPath = Path.of(tempDir.getAbsolutePath(), OUTPUT_FILE_NAME).toString();
+        var inputArguments = new String[]{INPUT_PATH, outputPath};
 
-        try (var fileWriter = new FileWriter(outputPath)) {
-            var csvWriter = new CSVWriter(fileWriter);
-            var routesReducer = new CSVRoutesReducer(csvReader, csvWriter, new RouteFactory(), new DurationMedianRouteFinder());
-            routesReducer.reduce();
-        }
+        Runner.main(inputArguments);
 
         var content = Files.readString(Path.of(outputPath));
         var expectedContent = Files.readString(Path.of(EXPECTED_OUTPUT_PATH));
         assertEquals(expectedContent, content);
     }
 
+    @Test
+    void whenArgumentsNotProvidedThenThrowException() {
+        assertThrows(RuntimeException.class, () -> Runner.main(new String[0]));
+    }
 }
